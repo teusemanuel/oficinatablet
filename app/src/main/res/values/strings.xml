@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Oficina Tablet</string>
+
+    // Facebook App Id
+    /////////////////
+    <string name="facebook_app_id">127665097688841</string>
+    <string name="fb_login_protocol_scheme">fb127665097688841</string>
+    <string name="login_in">Login In</string>
 </resources>
