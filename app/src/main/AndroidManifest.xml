@@ -24,6 +24,10 @@
         ///////////////////
         <activity android:name=".login.LoginActivity" />
 
+        //ACTIVITY DA LISTA DE USUARIOS CONECTADOS
+        //////////////////
+        <activity android:name=".users.UsersActivity" />
+
 
         // FACEBOOK ACTIVITY
         //////////////////////////

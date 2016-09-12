@@ -19,15 +19,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
+import java.util.Arrays;
 
 import br.com.oficinatablet.R;
 
@@ -50,7 +54,7 @@ public class LoginFragment extends Fragment {
         callbackManager = CallbackManager.Factory.create();
 
         loginButton = (LoginButton) view.findViewById(R.id.login_button);
-        loginButton.setReadPermissions("email");
+        loginButton.setReadPermissions(Arrays.asList("email", "public_profile"));
 
         // If using in a fragment
         loginButton.setFragment(this);
@@ -58,7 +62,8 @@ public class LoginFragment extends Fragment {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-
+                AccessToken accessToken = loginResult.getAccessToken();
+                Log.i("LoginFragment", "teste");
             }
 
             @Override

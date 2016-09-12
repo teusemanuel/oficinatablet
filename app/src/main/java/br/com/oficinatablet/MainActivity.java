@@ -22,13 +22,11 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
+import com.facebook.Profile;
 
 import br.com.oficinatablet.login.LoginActivity;
+import br.com.oficinatablet.users.UsersActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,28 +44,19 @@ public class MainActivity extends AppCompatActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
         AccessToken currentAccessToken = AccessToken.getCurrentAccessToken();
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                AccessToken currentAccessToken = AccessToken.getCurrentAccessToken();
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-
-            }
-        });
+        Profile currentProfile = Profile.getCurrentProfile();
 
 
         /**
          * intenção de iniciar a activity de Login
          */
-        showActivity(new Intent(this, LoginActivity.class));
+
+        if(currentAccessToken != null) {
+            showActivity(new Intent(this, UsersActivity.class));
+        } else {
+            showActivity(new Intent(this, LoginActivity.class));
+        }
+
     }
 
     private void showActivity(final Intent intent) {
