@@ -18,17 +18,16 @@ package br.com.oficinatablet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
-import com.facebook.Profile;
 
 import br.com.oficinatablet.login.LoginActivity;
 import br.com.oficinatablet.users.UsersActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity {
 
     CallbackManager callbackManager;
 
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
         AccessToken currentAccessToken = AccessToken.getCurrentAccessToken();
-        Profile currentProfile = Profile.getCurrentProfile();
+
 
 
         /**

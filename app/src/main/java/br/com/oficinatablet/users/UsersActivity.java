@@ -17,10 +17,11 @@ package br.com.oficinatablet.users;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 
 import br.com.oficinatablet.R;
@@ -31,7 +32,7 @@ import br.com.oficinatablet.users.fragments.UsersFragment;
  * MA Solutions
  * teusemanuel@gmail.com
  */
-public class UsersActivity extends FragmentActivity {
+public class UsersActivity extends AppCompatActivity {
 
     private UsersFragment fragment;
 
@@ -40,6 +41,8 @@ public class UsersActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_users);
+
+        Profile currentProfile = Profile.getCurrentProfile();
 
         if (savedInstanceState == null) {
             fragment = new UsersFragment();
