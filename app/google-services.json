@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1091861659481",
+    "firebase_url": "https://oficinatablet-84882.firebaseio.com",
+    "project_id": "oficinatablet-84882",
+    "storage_bucket": "oficinatablet-84882.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1091861659481:android:275d70546579e60d",
+        "android_client_info": {
+          "package_name": "br.com.oficinatablet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1091861659481-c4iglup3tarhgoulledt21134e02uto9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.oficinatablet",
+            "certificate_hash": "0586AB5AD031BDAB35F3F4C527DA2C48E6BC6628"
+          }
+        },
+        {
+          "client_id": "1091861659481-hg5v9vl6eura7c1fj1f67tvgae6oms2i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6uxrt5zr5yOcUwuIAEkQZfvyH8ifASsc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1091861659481-hg5v9vl6eura7c1fj1f67tvgae6oms2i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
