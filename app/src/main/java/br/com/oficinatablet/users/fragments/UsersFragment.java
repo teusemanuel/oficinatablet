@@ -15,7 +15,16 @@
  */
 package br.com.oficinatablet.users.fragments;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import br.com.oficinatablet.R;
 
 /**
  * Created by Mateus Emanuel Araújo on 9/11/16.
@@ -23,4 +32,23 @@ import android.support.v4.app.Fragment;
  * teusemanuel@gmail.com
  */
 public class UsersFragment extends Fragment {
+
+    private RecyclerView usersRecyclerView;
+    private RecyclerView.Adapter usersAdapter;
+    private LinearLayoutManager usersLayoutManager;
+
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
+
+        usersRecyclerView = (RecyclerView) view.findViewById(R.id.users_recycler_view);
+        usersRecyclerView.setHasFixedSize(true);
+
+        usersLayoutManager = new LinearLayoutManager(getActivity());
+        usersRecyclerView.setLayoutManager(usersLayoutManager);
+
+        return view;
+    }
 }
