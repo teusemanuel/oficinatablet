@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/exit_app"
-        android:title="Exit"
+        android:title="@string/exit_app"
         android:icon="@drawable/ic_exit_to_app"
         android:orderInCategory="1"
         app:showAsAction="always">

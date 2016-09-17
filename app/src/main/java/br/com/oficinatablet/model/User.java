@@ -15,6 +15,8 @@
  */
 package br.com.oficinatablet.model;
 
+import com.google.firebase.auth.FirebaseUser;
+
 /**
  * Created by Mateus Emanuel Araújo on 9/12/16.
  * MA Solutions
@@ -26,17 +28,30 @@ public class User {
     private String name;
     private String iconUrl;
     private String email;
+    private String token;
 
     // Requer construtor default para o mapeamento do objeto pelo Firebase
     @SuppressWarnings("unused")
     public User() {
     }
 
-    public User(String id, String name, String iconUrl, String email) {
+    public User(String id, String name, String iconUrl, String email, String token) {
         this.id = id;
         this.name = name;
         this.iconUrl = iconUrl;
         this.email = email;
+        this.token = token;
+    }
+
+    public User(FirebaseUser user) {
+        this.id = user.getUid();
+        this.name = user.getDisplayName();
+
+        if(user.getPhotoUrl() != null) {
+            this.iconUrl = user.getPhotoUrl().toString();
+        }
+        this.email = user.getEmail();
+        this.token = user.getToken(false).getResult().getToken();
     }
 
     public String getId() {
@@ -69,5 +84,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

@@ -6,4 +6,25 @@
     <string name="facebook_app_id">127665097688841</string>
     <string name="fb_login_protocol_scheme">fb127665097688841</string>
     <string name="login_in">Login In</string>
+    <string-array name="login_permissions">
+        <item>email</item>
+        <item>public_profile</item>
+    </string-array>
+
+
+    // LOGIN SCREEN
+    //////////////////
+    <string name="facebook_on_cancel">facebook:login cancelado.</string>
+    <string name="facebook_on_error">facebook:erro ao logar no facebook.</string>
+    <string name="firebase_on_auth_state_changed_signed_out">Usuário deslogado do firebase.</string>
+    <string name="firebase_on_auth_state_changed_signed_in">Usuário acaba de logar no sistema [UUId:%s].</string>
+    <string name="sign_in_with_facebook">Login com facebook error:</string>
+    <string name="authentication_failed">falha na autenticação.</string>
+
+
+    //USERS LIST
+    ///////////////
+    <string name="exit_app">Sair do applicativo</string>
+
+
 </resources>

@@ -4,6 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <Button
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/exit_app"
+        android:drawableRight="@drawable/ic_exit_to_app"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/users_recycler_view"
         android:scrollbars="vertical"

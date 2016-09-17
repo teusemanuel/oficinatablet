@@ -15,6 +15,7 @@
  */
 package br.com.oficinatablet.users;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -22,9 +23,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.facebook.Profile;
-import com.facebook.login.LoginManager;
+import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.oficinatablet.R;
+import br.com.oficinatablet.login.LoginActivity;
 import br.com.oficinatablet.users.fragments.UsersFragment;
 
 /**
@@ -67,7 +69,11 @@ public class UsersActivity extends AppCompatActivity {
             case R.id.exit_app:
 
                 //LOGOFF Facebook sdk
-                LoginManager.getInstance().logOut();
+                /*LoginManager.getInstance().logOut();*/
+                FirebaseAuth.getInstance().signOut();
+
+                // START Login screen
+                startActivity(new Intent(this, LoginActivity.class));
 
                 //FINISH APP
                 finish();

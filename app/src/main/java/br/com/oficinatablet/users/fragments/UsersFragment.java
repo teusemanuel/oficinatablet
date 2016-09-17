@@ -41,7 +41,7 @@ public class UsersFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_users, container, false);
 
         usersRecyclerView = (RecyclerView) view.findViewById(R.id.users_recycler_view);
         usersRecyclerView.setHasFixedSize(true);
