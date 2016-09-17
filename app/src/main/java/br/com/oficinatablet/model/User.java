@@ -28,7 +28,6 @@ public class User {
     private String name;
     private String iconUrl;
     private String email;
-    private String token;
 
     // Requer construtor default para o mapeamento do objeto pelo Firebase
     @SuppressWarnings("unused")
@@ -40,7 +39,6 @@ public class User {
         this.name = name;
         this.iconUrl = iconUrl;
         this.email = email;
-        this.token = token;
     }
 
     public User(FirebaseUser user) {
@@ -51,7 +49,6 @@ public class User {
             this.iconUrl = user.getPhotoUrl().toString();
         }
         this.email = user.getEmail();
-        this.token = user.getToken(false).getResult().getToken();
     }
 
     public String getId() {
@@ -86,11 +83,4 @@ public class User {
         this.email = email;
     }
 
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
 }

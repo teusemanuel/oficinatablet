@@ -17,7 +17,6 @@ package br.com.oficinatablet.service;
 
 import com.google.firebase.database.DatabaseReference;
 
-import br.com.oficinatablet.model.User;
 import br.com.oficinatablet.singletons.ServerURL;
 
 /**
@@ -31,9 +30,5 @@ public class ChatService extends GenericService {
 
     public ChatService() {
         this.myRef = getDatabase().getReference(ServerURL.getInstance().usersUrl());
-    }
-
-    public void saveUser(String userId, User user) {
-        this.myRef.child(userId).setValue(user);
     }
 }

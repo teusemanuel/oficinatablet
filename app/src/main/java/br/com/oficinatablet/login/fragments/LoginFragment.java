@@ -44,7 +44,7 @@ import java.util.Arrays;
 
 import br.com.oficinatablet.R;
 import br.com.oficinatablet.model.User;
-import br.com.oficinatablet.service.ChatService;
+import br.com.oficinatablet.service.UserService;
 import br.com.oficinatablet.users.UsersActivity;
 
 /**
@@ -56,7 +56,7 @@ public class LoginFragment extends Fragment {
 
     private static final String TAG = "LoginFragment";
 
-    private ChatService service;
+    private UserService service;
 
     //FIREBASE
     private FirebaseAuth mFirebaseAuth;
@@ -71,7 +71,7 @@ public class LoginFragment extends Fragment {
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-        this.service = new ChatService();
+        this.service = new UserService();
 
 
         /**

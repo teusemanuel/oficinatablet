@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.facebook.Profile;
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.oficinatablet.R;
@@ -69,7 +70,7 @@ public class UsersActivity extends AppCompatActivity {
             case R.id.exit_app:
 
                 //LOGOFF Facebook sdk
-                /*LoginManager.getInstance().logOut();*/
+                LoginManager.getInstance().logOut();
                 FirebaseAuth.getInstance().signOut();
 
                 // START Login screen
