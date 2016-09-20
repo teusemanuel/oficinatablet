@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/user_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_gravity="center"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
@@ -36,12 +36,13 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/user_action"
+        android:id="@+id/user_options"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:src="@drawable/ic_chat_bubble" />
+        android:clickable="true"
+        android:src="@drawable/ic_more" />
 
 
 </LinearLayout>

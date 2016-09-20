@@ -25,6 +25,8 @@
     //USERS LIST
     ///////////////
     <string name="exit_app">Sair do applicativo</string>
+    <string name="user_info">Info Usuário</string>
+    <string name="user_report">Reportar Usuário</string>
 
 
 </resources>

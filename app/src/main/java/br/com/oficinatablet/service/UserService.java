@@ -16,6 +16,7 @@
 package br.com.oficinatablet.service;
 
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 
 import br.com.oficinatablet.model.User;
 import br.com.oficinatablet.singletons.ServerURL;
@@ -37,7 +38,7 @@ public class UserService extends GenericService {
         this.myRef.child(userId).setValue(user);
     }
 
-    public void loggedUsers(String userId) {
-        this.myRef.child(userId).orderByValue();
+    public Query loggedUsers() {
+        return this.myRef.orderByValue();
     }
 }
