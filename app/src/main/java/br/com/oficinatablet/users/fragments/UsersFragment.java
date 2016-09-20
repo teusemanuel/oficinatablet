@@ -24,6 +24,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+
 import br.com.oficinatablet.R;
 
 /**
@@ -34,8 +36,8 @@ import br.com.oficinatablet.R;
 public class UsersFragment extends Fragment {
 
     private RecyclerView usersRecyclerView;
-    private RecyclerView.Adapter usersAdapter;
     private LinearLayoutManager usersLayoutManager;
+    private FirebaseRecyclerAdapter usersAdapter;
 
 
     @Nullable
