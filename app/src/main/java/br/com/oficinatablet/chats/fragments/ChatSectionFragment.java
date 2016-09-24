@@ -34,9 +34,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.Query;
 
 import br.com.oficinatablet.R;
-import br.com.oficinatablet.model.User;
-import br.com.oficinatablet.service.UserService;
 import br.com.oficinatablet.chats.decoration.DividerItemDecoration;
+import br.com.oficinatablet.model.Chat;
+import br.com.oficinatablet.model.User;
+import br.com.oficinatablet.service.ChatService;
+import br.com.oficinatablet.service.UserService;
 
 /**
  * Created by Mateus Emanuel Araújo on 9/11/16.
@@ -49,12 +51,14 @@ public class ChatSectionFragment extends Fragment {
 
     private int rowSelectedPosition;
     private User userSelected;
+    private Chat chatSelected;
 
-    private UserService service;
+    private UserService userService;
+    private ChatService chatService;
 
-    private RecyclerView usersRecyclerView;
-    private LinearLayoutManager usersLayoutManager;
-    private FirebaseRecyclerAdapter usersAdapter;
+    private RecyclerView chatSectionRecyclerView;
+    private LinearLayoutManager chatSectionLayoutManager;
+    private FirebaseRecyclerAdapter chatSectionAdapter;
 
 
 
@@ -99,34 +103,62 @@ public class ChatSectionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chat_section, container, false);
 
-        this.service = new UserService();
+        this.userService = new UserService();
+        this.chatService = new ChatService();
 
-        usersRecyclerView = (RecyclerView) view.findViewById(R.id.users_recycler_view);
-        usersRecyclerView.setHasFixedSize(true);
+        chatSectionRecyclerView = (RecyclerView) view.findViewById(R.id.users_recycler_view);
+        chatSectionRecyclerView.setHasFixedSize(true);
 
-        this.usersAdapter = this.getFirebaseAdapter();
+        switch (getSection()) {
+            case 1:
+                this.chatSectionAdapter = this.getFirebaseChatsAdapter();
+                break;
+            case 2:
+                this.chatSectionAdapter = this.getFirebaseUsersAdapter();
+                break;
+            default:
+                throw new RuntimeException("Invalid Section");
+        }
 
-        usersRecyclerView.setAdapter(this.usersAdapter);
-        usersRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
+        chatSectionRecyclerView.setAdapter(this.chatSectionAdapter);
+        chatSectionRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
 
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        // altera o título da activity
         if (firebaseUser != null) {
             String title = firebaseUser.getDisplayName();
             getActivity().setTitle(title);
         }
 
-        usersLayoutManager = new LinearLayoutManager(getActivity());
-        usersRecyclerView.setLayoutManager(usersLayoutManager);
+        chatSectionLayoutManager = new LinearLayoutManager(getActivity());
+        chatSectionRecyclerView.setLayoutManager(chatSectionLayoutManager);
 
         return view;
     }
 
 
-    private FirebaseRecyclerAdapter<User, ChatListViewHolder> getFirebaseAdapter() {
-        final Query query = this.service.loggedUsers();
+    private FirebaseRecyclerAdapter<Chat, ChatListViewHolder> getFirebaseChatsAdapter() {
+        final Query query = this.chatService.allChats();
+
+        return new FirebaseRecyclerAdapter<Chat, ChatListViewHolder>(
+                Chat.class, R.layout.layout_chat_section_row,
+                ChatListViewHolder.class, query) {
+            @Override
+            protected void populateViewHolder(ChatListViewHolder viewHolder, Chat chatModel, int position) {
+                viewHolder.userNameTextView.setText(chatModel.getChatName());
+                viewHolder.userActionImageView.setOnClickListener(getRowOptionListenerClick(position, chatModel));
+                viewHolder.itemView.setClickable(true);
+                viewHolder.itemView.setOnClickListener(getRowSelectedListenerClick(position, chatModel));
+            }
+        };
+    }
+
+
+    private FirebaseRecyclerAdapter<User, ChatListViewHolder> getFirebaseUsersAdapter() {
+        final Query query = this.userService.loggedUsers();
 
         return new FirebaseRecyclerAdapter<User, ChatListViewHolder>(
-                User.class, R.layout.layout_user_row,
+                User.class, R.layout.layout_chat_section_row,
                 ChatListViewHolder.class, query) {
             @Override
             protected void populateViewHolder(ChatListViewHolder viewHolder, User userModel, int position) {
@@ -135,6 +167,20 @@ public class ChatSectionFragment extends Fragment {
                 viewHolder.userActionImageView.setOnClickListener(getRowOptionListenerClick(position, userModel));
                 viewHolder.itemView.setClickable(true);
                 viewHolder.itemView.setOnClickListener(getRowSelectedListenerClick(position, userModel));
+            }
+        };
+    }
+
+    public View.OnClickListener getRowOptionListenerClick(final int positionRow, final Chat userModel) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popup = new PopupMenu(getActivity(), view);
+                MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.users_row, popup.getMenu());
+                popup.show();
+                setRowSelectedPosition(positionRow);
+                setChatSelected(userModel);
             }
         };
     }
@@ -149,6 +195,20 @@ public class ChatSectionFragment extends Fragment {
                 popup.show();
                 setRowSelectedPosition(positionRow);
                 setUserSelected(userModel);
+            }
+        };
+    }
+
+    public View.OnClickListener getRowSelectedListenerClick(final int positionRow, final Chat userModel) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popup = new PopupMenu(getActivity(), view);
+                MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.users_row, popup.getMenu());
+                popup.show();
+                setRowSelectedPosition(positionRow);
+                setChatSelected(userModel);
             }
         };
     }
@@ -184,5 +244,17 @@ public class ChatSectionFragment extends Fragment {
 
     public void setUserSelected(User userSelected) {
         this.userSelected = userSelected;
+    }
+
+    public Chat getChatSelected() {
+        return chatSelected;
+    }
+
+    public void setChatSelected(Chat chatSelected) {
+        this.chatSelected = chatSelected;
+    }
+
+    public int getSection() {
+        return getArguments().getInt(ARG_SECTION_NUMBER);
     }
 }

@@ -13,27 +13,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.oficinatablet.service;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Query;
-
-import br.com.oficinatablet.singletons.ServerURL;
+package br.com.oficinatablet.model;
 
 /**
- * Created by Mateus Emanuel Araújo on 9/15/16.
+ * Created by Mateus Emanuel Araújo on 9/23/16.
  * MA Solutions
  * teusemanuel@gmail.com
  */
-public class ChatService extends GenericService {
+public class Chat {
 
-    private DatabaseReference myRef;
+    private boolean isGroupedChat;
+    private String chatName;
 
-    public ChatService() {
-        this.myRef = getDatabase().getReference(ServerURL.getInstance().chatsUrl());
+    @SuppressWarnings("unused")
+    public Chat() {
     }
 
-    public Query allChats() {
-        return this.myRef.orderByValue();
+    public Chat(boolean isGroupedChat) {
+        this.isGroupedChat = isGroupedChat;
+    }
+
+    public boolean isGroupedChat() {
+        return isGroupedChat;
+    }
+
+    public void setGroupedChat(boolean groupedChat) {
+        isGroupedChat = groupedChat;
+    }
+
+    public String getChatName() {
+        return chatName;
+    }
+
+    public void setChatName(String chatName) {
+        this.chatName = chatName;
     }
 }

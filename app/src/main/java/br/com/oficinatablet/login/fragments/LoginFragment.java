@@ -43,9 +43,9 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Arrays;
 
 import br.com.oficinatablet.R;
+import br.com.oficinatablet.chats.ChatsSwipeActivity;
 import br.com.oficinatablet.model.User;
 import br.com.oficinatablet.service.UserService;
-import br.com.oficinatablet.chats.UsersActivity;
 
 /**
  * Created by Mateus Emanuel Araújo on 9/10/16.
@@ -89,7 +89,7 @@ public class LoginFragment extends Fragment {
                     User user  = new User(firebaseUser);
                     service.saveUser(user.getId(), user);
 
-                    startActivity(new Intent(getActivity(), UsersActivity.class));
+                    startActivity(new Intent(getActivity(), ChatsSwipeActivity.class));
                     getActivity().finish();
 
                 } else {
