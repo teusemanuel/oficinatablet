@@ -45,7 +45,7 @@ import java.util.Arrays;
 import br.com.oficinatablet.R;
 import br.com.oficinatablet.model.User;
 import br.com.oficinatablet.service.UserService;
-import br.com.oficinatablet.users.UsersActivity;
+import br.com.oficinatablet.chats.UsersActivity;
 
 /**
  * Created by Mateus Emanuel Araújo on 9/10/16.

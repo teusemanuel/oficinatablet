@@ -25,7 +25,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 
 import br.com.oficinatablet.login.LoginActivity;
-import br.com.oficinatablet.users.UsersActivity;
+import br.com.oficinatablet.chats.ChatsSwipeActivity;
 
 public class MainActivity extends FragmentActivity {
 
@@ -51,7 +51,7 @@ public class MainActivity extends FragmentActivity {
          */
 
         if(currentAccessToken != null) {
-            showActivity(new Intent(this, UsersActivity.class));
+            showActivity(new Intent(this, ChatsSwipeActivity.class));
         } else {
             showActivity(new Intent(this, LoginActivity.class));
         }
