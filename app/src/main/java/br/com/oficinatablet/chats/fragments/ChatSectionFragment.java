@@ -43,7 +43,7 @@ import br.com.oficinatablet.chats.decoration.DividerItemDecoration;
  * MA Solutions
  * teusemanuel@gmail.com
  */
-public class UsersFragment extends Fragment {
+public class ChatSectionFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -58,15 +58,15 @@ public class UsersFragment extends Fragment {
 
 
 
-    public UsersFragment() {
+    public ChatSectionFragment() {
     }
 
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static UsersFragment newInstance(int sectionNumber) {
-        UsersFragment fragment = new UsersFragment();
+    public static ChatSectionFragment newInstance(int sectionNumber) {
+        ChatSectionFragment fragment = new ChatSectionFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -75,14 +75,14 @@ public class UsersFragment extends Fragment {
 
 
 
-    public static class UserViewHolder extends RecyclerView.ViewHolder {
+    public static class ChatListViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView userIconImageView;
         public TextView userNameTextView;
         public TextView userEmailTextView;
         public ImageView userActionImageView;
 
-        public UserViewHolder(View itemView) {
+        public ChatListViewHolder(View itemView) {
             super(itemView);
 
             userIconImageView = (ImageView) itemView.findViewById(R.id.user_icon);
@@ -97,7 +97,7 @@ public class UsersFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_users, container, false);
+        View view = inflater.inflate(R.layout.fragment_chat_section, container, false);
 
         this.service = new UserService();
 
@@ -122,14 +122,14 @@ public class UsersFragment extends Fragment {
     }
 
 
-    private FirebaseRecyclerAdapter<User, UserViewHolder> getFirebaseAdapter() {
+    private FirebaseRecyclerAdapter<User, ChatListViewHolder> getFirebaseAdapter() {
         final Query query = this.service.loggedUsers();
 
-        return new FirebaseRecyclerAdapter<User, UserViewHolder>(
+        return new FirebaseRecyclerAdapter<User, ChatListViewHolder>(
                 User.class, R.layout.layout_user_row,
-                UserViewHolder.class, query) {
+                ChatListViewHolder.class, query) {
             @Override
-            protected void populateViewHolder(UserViewHolder viewHolder, User userModel, int position) {
+            protected void populateViewHolder(ChatListViewHolder viewHolder, User userModel, int position) {
                 viewHolder.userNameTextView.setText(userModel.getName());
                 viewHolder.userEmailTextView.setText(userModel.getEmail());
                 viewHolder.userActionImageView.setOnClickListener(getRowOptionListenerClick(position, userModel));
