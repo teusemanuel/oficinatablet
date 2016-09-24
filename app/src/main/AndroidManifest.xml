@@ -30,7 +30,7 @@
         //ACTIVITY CHAT ENTRE USUARIOS
         //////////////////
         <activity
-            android:name=".chat.ChatActivity"
+            android:name=".message.MessageActivity"
             android:label="@string/title_activity_chat"
             android:parentActivityName=".chats.ChatsSwipeActivity"
             android:theme="@style/AppTheme.NoActionBar">

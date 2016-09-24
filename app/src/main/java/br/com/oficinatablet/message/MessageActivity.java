@@ -1,17 +1,17 @@
-package br.com.oficinatablet.chat;
+package br.com.oficinatablet.message;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import br.com.oficinatablet.R;
-import br.com.oficinatablet.chat.fragments.ChatInputFragment;
-import br.com.oficinatablet.chat.fragments.ChatListFragment;
+import br.com.oficinatablet.message.fragments.MessageInputFragment;
+import br.com.oficinatablet.message.fragments.MessageListFragment;
 
-public class ChatActivity extends AppCompatActivity {
+public class MessageActivity extends AppCompatActivity {
 
-    private ChatListFragment listFragment;
-    private ChatInputFragment inputFragment;
+    private MessageListFragment listFragment;
+    private MessageInputFragment inputFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +23,8 @@ public class ChatActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (savedInstanceState == null) {
-            listFragment = new ChatListFragment();
-            inputFragment = new ChatInputFragment();
+            listFragment = new MessageListFragment();
+            inputFragment = new MessageInputFragment();
 
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, listFragment)

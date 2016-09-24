@@ -13,28 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.oficinatablet.service;
+package br.com.oficinatablet.model;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Query;
-
-import br.com.oficinatablet.singletons.ServerURL;
+import java.util.Date;
 
 /**
- * Created by Mateus Emanuel Araújo on 9/15/16.
+ * Created by Mateus Emanuel Araújo on 9/24/16.
  * MA Solutions
  * teusemanuel@gmail.com
  */
-public class MessageService extends GenericService {
+public class Message {
 
-    private DatabaseReference myRef;
-
-    public MessageService() {
-        this.myRef = getDatabase().getReference(ServerURL.getInstance().chatMessagesUrl());
-    }
-
-    public Query getMessagesForChat(String chatId) {
-
-        return this.myRef.child(chatId);
-    }
+    String message;
+    User owner;
+    Date timestamp;
 }

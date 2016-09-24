@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="br.com.oficinatablet.chat.ChatActivity">
+    tools:context="br.com.oficinatablet.message.MessageActivity">
 
     <include layout="@layout/toolbar" />
 
@@ -19,14 +19,14 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            tools:activity="br.com.oficinatablet.chat.fragments.ChatListFragment" />
+            tools:activity="br.com.oficinatablet.message.fragments.MessageListFragment" />
 
         <LinearLayout
             android:id="@+id/input_chat"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:orientation="horizontal"
-            tools:activity="br.com.oficinatablet.chat.fragments.ChatListFragment" />
+            tools:activity="br.com.oficinatablet.message.fragments.MessageListFragment" />
     </LinearLayout>
 
 

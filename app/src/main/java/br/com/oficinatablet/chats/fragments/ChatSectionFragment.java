@@ -35,7 +35,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.Query;
 
 import br.com.oficinatablet.R;
-import br.com.oficinatablet.chat.ChatActivity;
+import br.com.oficinatablet.message.MessageActivity;
 import br.com.oficinatablet.chats.decoration.DividerItemDecoration;
 import br.com.oficinatablet.model.Chat;
 import br.com.oficinatablet.model.User;
@@ -207,7 +207,7 @@ public class ChatSectionFragment extends Fragment {
             public void onClick(View view) {
 
                 //TODO start activity for chat
-                Intent intent = new Intent(getActivity(), ChatActivity.class);
+                Intent intent = new Intent(getActivity(), MessageActivity.class);
                 startActivity(intent);
             }
         };
@@ -219,7 +219,7 @@ public class ChatSectionFragment extends Fragment {
             public void onClick(View view) {
 
                 //TODO start activity for chat
-                Intent intent = new Intent(getActivity(), ChatActivity.class);
+                Intent intent = new Intent(getActivity(), MessageActivity.class);
                 startActivity(intent);
             }
         };
