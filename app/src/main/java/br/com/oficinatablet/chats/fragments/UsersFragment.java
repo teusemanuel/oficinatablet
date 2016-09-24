@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.oficinatablet.users.fragments;
+package br.com.oficinatablet.chats.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -36,6 +36,7 @@ import com.google.firebase.database.Query;
 import br.com.oficinatablet.R;
 import br.com.oficinatablet.model.User;
 import br.com.oficinatablet.service.UserService;
+import br.com.oficinatablet.chats.decoration.DividerItemDecoration;
 
 /**
  * Created by Mateus Emanuel Araújo on 9/11/16.
@@ -44,11 +45,33 @@ import br.com.oficinatablet.service.UserService;
  */
 public class UsersFragment extends Fragment {
 
+    private static final String ARG_SECTION_NUMBER = "section_number";
+
+    private int rowSelectedPosition;
+    private User userSelected;
+
     private UserService service;
 
     private RecyclerView usersRecyclerView;
     private LinearLayoutManager usersLayoutManager;
     private FirebaseRecyclerAdapter usersAdapter;
+
+
+
+    public UsersFragment() {
+    }
+
+    /**
+     * Returns a new instance of this fragment for the given section
+     * number.
+     */
+    public static UsersFragment newInstance(int sectionNumber) {
+        UsersFragment fragment = new UsersFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
 
 
@@ -84,6 +107,7 @@ public class UsersFragment extends Fragment {
         this.usersAdapter = this.getFirebaseAdapter();
 
         usersRecyclerView.setAdapter(this.usersAdapter);
+        usersRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
 
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null) {
@@ -108,12 +132,14 @@ public class UsersFragment extends Fragment {
             protected void populateViewHolder(UserViewHolder viewHolder, User userModel, int position) {
                 viewHolder.userNameTextView.setText(userModel.getName());
                 viewHolder.userEmailTextView.setText(userModel.getEmail());
-                viewHolder.userActionImageView.setOnClickListener(getRowOptionListenerClick(position));
+                viewHolder.userActionImageView.setOnClickListener(getRowOptionListenerClick(position, userModel));
+                viewHolder.itemView.setClickable(true);
+                viewHolder.itemView.setOnClickListener(getRowSelectedListenerClick(position, userModel));
             }
         };
     }
 
-    public View.OnClickListener getRowOptionListenerClick(final int positionRow) {
+    public View.OnClickListener getRowOptionListenerClick(final int positionRow, final User userModel) {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,7 +147,42 @@ public class UsersFragment extends Fragment {
                 MenuInflater inflater = popup.getMenuInflater();
                 inflater.inflate(R.menu.users_row, popup.getMenu());
                 popup.show();
+                setRowSelectedPosition(positionRow);
+                setUserSelected(userModel);
             }
         };
+    }
+
+    public View.OnClickListener getRowSelectedListenerClick(final int positionRow, final User userModel) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popup = new PopupMenu(getActivity(), view);
+                MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.users_row, popup.getMenu());
+                popup.show();
+                setRowSelectedPosition(positionRow);
+                setUserSelected(userModel);
+            }
+        };
+    }
+
+
+    //GETTERS AND SETTER
+    ///////////////////
+    public int getRowSelectedPosition() {
+        return rowSelectedPosition;
+    }
+
+    public void setRowSelectedPosition(int rowSelectedPosition) {
+        this.rowSelectedPosition = rowSelectedPosition;
+    }
+
+    public User getUserSelected() {
+        return userSelected;
+    }
+
+    public void setUserSelected(User userSelected) {
+        this.userSelected = userSelected;
     }
 }
