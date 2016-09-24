@@ -203,10 +203,6 @@ public class ChatSectionFragment extends Fragment {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopupMenu popup = new PopupMenu(getActivity(), view);
-                MenuInflater inflater = popup.getMenuInflater();
-                inflater.inflate(R.menu.users_row, popup.getMenu());
-                popup.show();
                 setRowSelectedPosition(positionRow);
                 setChatSelected(userModel);
             }
@@ -217,10 +213,6 @@ public class ChatSectionFragment extends Fragment {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopupMenu popup = new PopupMenu(getActivity(), view);
-                MenuInflater inflater = popup.getMenuInflater();
-                inflater.inflate(R.menu.users_row, popup.getMenu());
-                popup.show();
                 setRowSelectedPosition(positionRow);
                 setUserSelected(userModel);
             }
