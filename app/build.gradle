@@ -5,6 +5,7 @@ android {
     buildToolsVersion "24.0.0"
 
     defaultConfig {
+        vectorDrawables.useSupportLibrary = true
         applicationId "br.com.oficinatablet"
         minSdkVersion 15
         targetSdkVersion 24

@@ -21,12 +21,24 @@
         //ACTIVITY DE LOGIN
         ///////////////////
         <activity android:name=".login.LoginActivity" />
-        //ACTIVITY DA LISTA DE USUARIOS CONECTADOS
+        //ACTIVITY DA LISTA DE USUARIOS REGISTRADOS E CHATS
         //////////////////
         <activity
             android:name=".chats.ChatsSwipeActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        //ACTIVITY CHAT ENTRE USUARIOS
+        //////////////////
+        <activity
+            android:name=".chat.ChatActivity"
+            android:label="@string/title_activity_chat"
+            android:parentActivityName=".chats.ChatsSwipeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.oficinatablet.chats.ChatsSwipeActivity" />
+        </activity>
+
         // FACEBOOK ACTIVITY
         //////////////////////////
         <activity

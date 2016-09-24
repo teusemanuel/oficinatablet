@@ -15,6 +15,7 @@
  */
 package br.com.oficinatablet.chats.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -34,6 +35,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.Query;
 
 import br.com.oficinatablet.R;
+import br.com.oficinatablet.chat.ChatActivity;
 import br.com.oficinatablet.chats.decoration.DividerItemDecoration;
 import br.com.oficinatablet.model.Chat;
 import br.com.oficinatablet.model.User;
@@ -203,8 +205,10 @@ public class ChatSectionFragment extends Fragment {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setRowSelectedPosition(positionRow);
-                setChatSelected(userModel);
+
+                //TODO start activity for chat
+                Intent intent = new Intent(getActivity(), ChatActivity.class);
+                startActivity(intent);
             }
         };
     }
@@ -213,8 +217,10 @@ public class ChatSectionFragment extends Fragment {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setRowSelectedPosition(positionRow);
-                setUserSelected(userModel);
+
+                //TODO start activity for chat
+                Intent intent = new Intent(getActivity(), ChatActivity.class);
+                startActivity(intent);
             }
         };
     }
