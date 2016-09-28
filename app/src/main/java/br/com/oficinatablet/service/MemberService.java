@@ -17,7 +17,7 @@ package br.com.oficinatablet.service;
 
 import com.google.firebase.database.DatabaseReference;
 
-import java.util.List;
+import java.util.Map;
 
 import br.com.oficinatablet.model.User;
 import br.com.oficinatablet.singletons.ServerURL;
@@ -35,8 +35,12 @@ public class MemberService extends GenericService {
         this.myRef = getDatabase().getReference(ServerURL.getInstance().chatMembersUrl());
     }
 
-    public void createMemberChat(String chatId, List<User> members) {
-        this.myRef.child(chatId).setValue(members);
+    public void createMemberChat(String chatId, Map<String, User> members, DatabaseReference.CompletionListener listener) {
+        if (listener != null) {
+            this.myRef.child(chatId).setValue(members, listener);
+        } else {
+            this.myRef.child(chatId).setValue(members);
+        }
     }
 
     public void addMemberChat(String chatId, User memver) {

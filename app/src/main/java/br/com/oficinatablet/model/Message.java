@@ -15,6 +15,7 @@
  */
 package br.com.oficinatablet.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -22,9 +23,42 @@ import java.util.Date;
  * MA Solutions
  * teusemanuel@gmail.com
  */
-public class Message {
+public class Message implements Serializable {
 
     String message;
     User owner;
     Date timestamp;
+
+    public Message() {
+    }
+
+    public Message(String message, User owner) {
+        this.message = message;
+        this.owner = owner;
+        this.timestamp = new Date();
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
 }

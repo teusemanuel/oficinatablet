@@ -15,30 +15,19 @@
  */
 package br.com.oficinatablet.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Mateus Emanuel Araújo on 9/23/16.
  * MA Solutions
  * teusemanuel@gmail.com
  */
-public class Chat {
+public class Chat implements Serializable {
 
-    private boolean isGroupedChat;
     private String chatName;
 
     @SuppressWarnings("unused")
     public Chat() {
-    }
-
-    public Chat(boolean isGroupedChat) {
-        this.isGroupedChat = isGroupedChat;
-    }
-
-    public boolean isGroupedChat() {
-        return isGroupedChat;
-    }
-
-    public void setGroupedChat(boolean groupedChat) {
-        isGroupedChat = groupedChat;
     }
 
     public String getChatName() {

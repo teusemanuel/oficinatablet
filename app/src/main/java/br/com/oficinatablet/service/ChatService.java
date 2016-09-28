@@ -34,21 +34,29 @@ public class ChatService extends GenericService {
         this.myRef = getDatabase().getReference(ServerURL.getInstance().chatsUrl());
     }
 
-    public void createChat(Chat chat) {
-        this.myRef.push().setValue(chat);
+    public String createChat(Chat chat, DatabaseReference.CompletionListener listener) {
+        DatabaseReference pushReference = this.myRef.push();
+        if (listener != null) {
+            pushReference.setValue(chat, listener);
+        } else {
+            pushReference.setValue(chat);
+        }
+
+        return pushReference.getKey();
     }
 
     public void updateChat(String chatId, Chat chat) {
         this.myRef.child(chatId).setValue(chat);
     }
 
-    public Integer getChatForUsers(String originUser, String destinationUser) {
+    public Query getChatForUsers(String originUser, String destinationUser) {
+        Query query = myRef.equalTo(originUser);
 
         //TODO create query for search usesr in chatMembers with singleChat
-        return null;/*this.myRef.child(chatId).setValue(chat);*/
+        return query;
     }
 
-    public Query allChats() {
-        return this.myRef.orderByValue();
+    public Query allChats(String originUser) {
+        return this.myRef.equalTo(originUser).orderByValue();
     }
 }

@@ -21,10 +21,15 @@
             android:layout_weight="1"
             tools:activity="br.com.oficinatablet.message.fragments.MessageListFragment" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:listDivider" />
+
         <LinearLayout
             android:id="@+id/input_chat"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             tools:activity="br.com.oficinatablet.message.fragments.MessageListFragment" />
     </LinearLayout>

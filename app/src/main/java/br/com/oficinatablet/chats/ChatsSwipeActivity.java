@@ -17,6 +17,7 @@ package br.com.oficinatablet.chats;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -29,8 +30,8 @@ import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.oficinatablet.R;
-import br.com.oficinatablet.login.LoginActivity;
 import br.com.oficinatablet.chats.fragments.SectionsPagerAdapter;
+import br.com.oficinatablet.login.LoginActivity;
 
 /**
  * Created by Mateus Emanuel Araújo on 9/21/16.
@@ -56,12 +57,14 @@ public class ChatsSwipeActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
 
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users_swip);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         // Criar o adaptador que vai devolver um fragmento para cada uma das secções principais da activity.
@@ -82,6 +85,12 @@ public class ChatsSwipeActivity extends AppCompatActivity {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.users, menu);
         return true;
+    }
+
+    @Nullable
+    @Override
+    public android.view.ActionMode startActionMode(android.view.ActionMode.Callback callback) {
+        return toolbar.startActionMode(callback);
     }
 
     @Override

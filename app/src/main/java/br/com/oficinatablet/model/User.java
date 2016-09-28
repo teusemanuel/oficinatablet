@@ -17,12 +17,14 @@ package br.com.oficinatablet.model;
 
 import com.google.firebase.auth.FirebaseUser;
 
+import java.io.Serializable;
+
 /**
  * Created by Mateus Emanuel Araújo on 9/12/16.
  * MA Solutions
  * teusemanuel@gmail.com
  */
-public class User {
+public class User implements Serializable {
 
     private String id;
     private String name;
