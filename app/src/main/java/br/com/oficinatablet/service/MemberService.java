@@ -43,10 +43,9 @@ public class MemberService extends GenericService {
         }
     }
 
-    public void addMemberChat(String chatId, User memver) {
+    public void addMemberChat(String chatId, User member) {
 
-        //TODO create method for add member
-        /*this.myRef.child(chatId).asetValue(chat);*/
+        this.myRef.child(chatId).child(member.getId()).setValue(member);
     }
 
     public void removeMemberChat(String chatId, String userId) {

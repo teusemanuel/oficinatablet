@@ -18,6 +18,8 @@ package br.com.oficinatablet.service;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 
+import java.util.Set;
+
 import br.com.oficinatablet.model.Chat;
 import br.com.oficinatablet.singletons.ServerURL;
 
@@ -34,7 +36,10 @@ public class ChatService extends GenericService {
         this.myRef = getDatabase().getReference(ServerURL.getInstance().chatsUrl());
     }
 
-    public String createChat(Chat chat, DatabaseReference.CompletionListener listener) {
+    /// CHATS
+    ///////////////
+
+    public String createChat(Chat chat, Set<String> membersKey, DatabaseReference.CompletionListener listener) {
         DatabaseReference pushReference = this.myRef.push();
         if (listener != null) {
             pushReference.setValue(chat, listener);
@@ -42,21 +47,21 @@ public class ChatService extends GenericService {
             pushReference.setValue(chat);
         }
 
-        return pushReference.getKey();
+        String chatKey = pushReference.getKey();
+
+        // for filter in database
+        for(String memberKey : membersKey) {
+            this.myRef.child(chatKey).child(memberKey).setValue(memberKey);
+        }
+        
+        return chatKey;
     }
 
     public void updateChat(String chatId, Chat chat) {
         this.myRef.child(chatId).setValue(chat);
     }
 
-    public Query getChatForUsers(String originUser, String destinationUser) {
-        Query query = myRef.equalTo(originUser);
-
-        //TODO create query for search usesr in chatMembers with singleChat
-        return query;
-    }
-
     public Query allChats(String originUser) {
-        return this.myRef.equalTo(originUser).orderByValue();
+        return this.myRef.orderByChild(originUser).equalTo(originUser);
     }
 }

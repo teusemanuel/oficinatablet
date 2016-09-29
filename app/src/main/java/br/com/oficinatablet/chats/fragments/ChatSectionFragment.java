@@ -220,7 +220,7 @@ public class ChatSectionFragment extends Fragment {
 
 
     private SelectableFirebaseAdapter<User, ChatListViewHolder> getFirebaseUsersAdapter() {
-        final Query query = this.userService.loggedUsers();
+        final Query query = this.userService.loggedUsers(this.loggedUser.getId());
 
         return new SelectableFirebaseAdapter<User, ChatListViewHolder>(
                 User.class, R.layout.layout_chat_section_row,
@@ -378,14 +378,16 @@ public class ChatSectionFragment extends Fragment {
     }
 
     private void createGroupChat(String groupChatName, final AlertDialog builder) {
-        final Chat chatModel = new Chat();
-        chatModel.setChatName(groupChatName);
-
-        final String chatKey = this.chatService.createChat(chatModel, null);
-
         Map<String, User> selectedMembers = ((SelectableFirebaseAdapter) chatSectionAdapter).getSelectedObjects();
 
-        selectedMembers.put(this.loggedUser.getId(), loggedUser);
+        if(!selectedMembers.containsKey(this.loggedUser.getId())) {
+            selectedMembers.put(this.loggedUser.getId(), loggedUser);
+        }
+
+        final Chat chatModel = new Chat(groupChatName);
+
+        final String chatKey = this.chatService.createChat(chatModel, selectedMembers.keySet(), null);
+
 
         this.memberService.createMemberChat(chatKey, selectedMembers, new DatabaseReference.CompletionListener() {
             @Override

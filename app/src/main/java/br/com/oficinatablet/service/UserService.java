@@ -36,9 +36,10 @@ public class UserService extends GenericService {
 
     public void saveUser(String userId, User user) {
         this.myRef.child(userId).setValue(user);
+        this.myRef.child(userId).child(userId).setValue(userId);
     }
 
-    public Query loggedUsers() {
-        return this.myRef.orderByValue();
+    public Query loggedUsers(String userId) {
+        return this.myRef.orderByChild(userId).equalTo(null);
     }
 }

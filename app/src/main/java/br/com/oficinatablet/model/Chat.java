@@ -30,6 +30,10 @@ public class Chat implements Serializable {
     public Chat() {
     }
 
+    public Chat(String chatName) {
+        this.chatName = chatName;
+    }
+
     public String getChatName() {
         return chatName;
     }
