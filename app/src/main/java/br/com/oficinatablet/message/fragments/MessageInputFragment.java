@@ -19,6 +19,6 @@ public class MessageInputFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_input_chat, container, false);
+        return inflater.inflate(R.layout.fragment_message_input, container, false);
     }
 }
