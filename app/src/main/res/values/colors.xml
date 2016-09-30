@@ -10,6 +10,9 @@
     <color name="listDivider">#BDBDBD</color>
 
 
+    <color name="inputMessageBackground">#D9FFFFFF</color>
+
+
     <!--
     android:windowBackground
 

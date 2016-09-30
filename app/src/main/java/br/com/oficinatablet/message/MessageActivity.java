@@ -38,7 +38,7 @@ public class MessageActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        // altera o título da activity
+        // Recupera o usuario logado
         if (firebaseUser != null) {
             loggedUser = new User(firebaseUser);
         }
@@ -51,7 +51,7 @@ public class MessageActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             listFragment = MessageListFragment.newInstance(chatKey);
-            inputFragment = new MessageInputFragment();
+            inputFragment = MessageInputFragment.newInstance(chatKey, loggedUser);
 
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, listFragment)

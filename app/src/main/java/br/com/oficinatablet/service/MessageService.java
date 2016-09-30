@@ -18,6 +18,8 @@ package br.com.oficinatablet.service;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 
+import br.com.oficinatablet.model.Message;
+import br.com.oficinatablet.model.User;
 import br.com.oficinatablet.singletons.ServerURL;
 
 /**
@@ -35,6 +37,15 @@ public class MessageService extends GenericService {
 
     public Query getMessagesForChat(String chatId) {
 
-        return this.myRef.child(chatId);
+        return this.myRef.child(chatId).orderByChild("timestamp");
+    }
+
+    public void send(String chatId, String message, User user, DatabaseReference.CompletionListener listener) {
+        Message msg = new Message(message, user);
+        if(listener != null) {
+            this.myRef.child(chatId).push().setValue(msg, listener);
+        } else {
+            this.myRef.child(chatId).push().setValue(msg);
+        }
     }
 }

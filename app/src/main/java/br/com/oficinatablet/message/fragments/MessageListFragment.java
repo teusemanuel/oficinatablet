@@ -92,12 +92,12 @@ public class MessageListFragment extends Fragment {
         final Query query = this.messageService.getMessagesForChat(chatKey);
 
         return new FirebaseRecyclerAdapter<Message, ChatMessagesViewHolder>(
-                Message.class, R.layout.layout_chat_section_row,
+                Message.class, R.layout.layout_message_right_row,
                 ChatMessagesViewHolder.class, query) {
             @Override
             protected void populateViewHolder(ChatMessagesViewHolder viewHolder, Message messageModel, int position) {
                 viewHolder.messageUserName.setText(messageModel.getOwner().getName());
-                viewHolder.messageUserName.setText(messageModel.getMessage());
+                viewHolder.messageUser.setText(messageModel.getMessage());
                 viewHolder.itemView.setClickable(true);
             }
         };

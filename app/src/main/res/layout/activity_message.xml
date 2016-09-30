@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="br.com.oficinatablet.message.MessageActivity">
+    tools:context="br.com.oficinatablet.message.MessageActivity"
+    android:background="@mipmap/background_game_oficina">
 
     <include layout="@layout/toolbar" />
 
@@ -13,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@mipmap/background_game_oficina">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <FrameLayout
             android:id="@+id/container"
@@ -32,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            tools:activity="br.com.oficinatablet.message.fragments.MessageListFragment" />
+            tools:activity="br.com.oficinatablet.message.fragments.MessageInputFragment" />
     </LinearLayout>
 
 
