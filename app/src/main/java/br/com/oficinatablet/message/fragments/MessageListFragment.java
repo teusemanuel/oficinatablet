@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -47,14 +46,12 @@ public class MessageListFragment extends Fragment {
     public static class ChatMessagesViewHolder extends RecyclerView.ViewHolder {
 
         public TextView messageUserName;
-        public ImageView messageOptions;
         public TextView messageUser;
 
         public ChatMessagesViewHolder(View itemView) {
             super(itemView);
 
             messageUserName = (TextView) itemView.findViewById(R.id.message_user_name);
-            messageOptions = (ImageView) itemView.findViewById(R.id.message_options);
             messageUser = (TextView) itemView.findViewById(R.id.message_user);
 
         }
