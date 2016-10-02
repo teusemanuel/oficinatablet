@@ -7,15 +7,29 @@
     android:paddingBottom="@dimen/layout_message_horizontal_margin"
     android:paddingLeft="?listPreferredItemPaddingLeft"
     android:paddingRight="?listPreferredItemPaddingRight"
-    android:gravity="top|right|end"
+    android:gravity="top|left|start"
     android:paddingTop="@dimen/layout_message_horizontal_margin">
+
+
+    <ImageView
+        android:id="@+id/message_user_icon"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginRight="-10dp" />
+
+    <ImageView
+        android:id="@+id/message_options"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginRight="-7dp"
+        android:clickable="true"
+        app:srcCompat="@drawable/ic_arrow_left_chat" />
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:outlineProvider="bounds"
         card_view:cardCornerRadius="4dp"
         card_view:cardElevation="2dp"
         card_view:cardBackgroundColor="@android:color/white">
@@ -63,22 +77,6 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
-
-
-    <ImageView
-        android:id="@+id/message_options"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_gravity="top|right|end"
-        android:layout_marginLeft="-5dp"
-        android:clickable="true"
-        app:srcCompat="@drawable/ic_arrow_right_chat" />
-
-    <ImageView
-        android:id="@+id/message_user_icon"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginLeft="-10dp" />
 
 
 </LinearLayout>

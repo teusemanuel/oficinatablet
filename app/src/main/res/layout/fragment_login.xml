@@ -3,26 +3,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/login_background"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".login.fragments.LoginFragment">
 
-    <TextView
-        style="@style/TextAppearance.AppCompat.Display2"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login_in"/>
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/layout_login_card_margin"
+        android:layout_marginLeft="@dimen/layout_login_card_margin"
+        android:layout_marginRight="@dimen/layout_login_card_margin"
+        android:layout_marginStart="@dimen/layout_login_card_margin"
+        card_view:cardBackgroundColor="@android:color/white"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="6dp"
+        card_view:cardUseCompatPadding="true"
+        card_view:contentPadding="@dimen/layout_login_card_padding">
 
-    <com.facebook.login.widget.LoginButton
-        style="@style/com_facebook_button"
-        android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textSize="24sp"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp"
-        android:layout_marginBottom="30dp"
-        android:layout_marginTop="30dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/layout_login_card_margin"
+            android:layout_marginTop="@dimen/layout_login_card_margin"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Display2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_in"
+                android:textColor="@color/textColorSecondary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_weight="0.6"
+                    android:background="@color/colorIcons" />
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/ic_account_circle"
+                    android:contentDescription="@string/login_icon_image" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_weight="0.6"
+                    android:background="@color/colorIcons" />
+
+            </LinearLayout>
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button"
+                style="@style/com_facebook_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="30dp"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:textSize="24sp" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>

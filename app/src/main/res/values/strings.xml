@@ -11,6 +11,8 @@
         <item>public_profile</item>
     </string-array>
 
+    <string name="login_icon_image">Login Icon Image</string>
+
 
     // LOGIN SCREEN
     //////////////////

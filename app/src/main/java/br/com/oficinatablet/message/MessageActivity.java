@@ -50,7 +50,7 @@ public class MessageActivity extends AppCompatActivity {
         chatKey = getIntent().getStringExtra(ARG_CHAT_KEY);
 
         if (savedInstanceState == null) {
-            listFragment = MessageListFragment.newInstance(chatKey);
+            listFragment = MessageListFragment.newInstance(chatKey, loggedUser);
             inputFragment = MessageInputFragment.newInstance(chatKey, loggedUser);
 
             getSupportFragmentManager().beginTransaction()

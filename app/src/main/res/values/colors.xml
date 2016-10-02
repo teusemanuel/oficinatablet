@@ -12,6 +12,8 @@
 
     <color name="inputMessageBackground">#D9FFFFFF</color>
 
+    <color name="colorIcons">#757575</color>
+
 
     <!--
     android:windowBackground
