@@ -49,7 +49,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="4dp"
                     android:layout_weight="0.6"
-                    android:background="@color/colorIcons" />
+                    android:background="@color/colorLoginIcons" />
 
                 <ImageView
                     android:layout_width="60dp"
@@ -63,21 +63,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="4dp"
                     android:layout_weight="0.6"
-                    android:background="@color/colorIcons" />
+                    android:background="@color/colorLoginIcons" />
 
             </LinearLayout>
 
             <com.facebook.login.widget.LoginButton
                 android:id="@+id/login_button"
-                style="@style/com_facebook_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="30dp"
-                android:layout_marginTop="30dp"
-                android:paddingBottom="15dp"
-                android:paddingTop="15dp"
-                android:textSize="24sp" />
+                android:layout_marginTop="30dp" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 

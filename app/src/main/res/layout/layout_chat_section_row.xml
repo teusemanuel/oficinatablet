@@ -38,8 +38,8 @@
 
     <ImageView
         android:id="@+id/user_options"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:clickable="true"

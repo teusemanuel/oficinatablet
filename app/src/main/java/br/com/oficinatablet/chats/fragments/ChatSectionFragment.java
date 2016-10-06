@@ -34,6 +34,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -83,6 +85,9 @@ public class ChatSectionFragment extends Fragment {
     //TOOLBAR ACTION
     private ActionModeCallback actionModeCallback = new ActionModeCallback();
     private ActionMode actionMode;
+
+    //position to animation
+    private int lastPosition = -1;
 
 
 
@@ -214,6 +219,13 @@ public class ChatSectionFragment extends Fragment {
                 viewHolder.userActionImageView.setOnClickListener(getRowOptionListenerClick(position, chatModel));
                 viewHolder.itemView.setClickable(true);
                 viewHolder.itemView.setOnClickListener(getRowSelectedListenerClick(position, chatKey, chatModel));
+
+                setAnimation(viewHolder.itemView, position);
+            }
+
+            @Override
+            public void onViewDetachedFromWindow(ChatListViewHolder holder) {
+                clearAnimation(holder.itemView);
             }
         };
     }
@@ -228,6 +240,7 @@ public class ChatSectionFragment extends Fragment {
             @Override
             protected void populateViewHolder(ChatListViewHolder viewHolder, User userModel, int position) {
 
+
                 //key reference
                 String userKey = getRef(position).getKey();
                 viewHolder.userNameTextView.setText(userModel.getName());
@@ -237,8 +250,34 @@ public class ChatSectionFragment extends Fragment {
                 viewHolder.itemView.setOnClickListener(getRowSelectedListenerClick(position, userKey, userModel));
 
                 viewHolder.userIconImageView.setImageResource(isSelected(position) ? R.drawable.ic_check_circle : R.drawable.ic_user_circle);
+
+                setAnimation(viewHolder.itemView, position);
+
+            }
+
+            @Override
+            public void onViewDetachedFromWindow(ChatListViewHolder holder) {
+                clearAnimation(holder.itemView);
             }
         };
+    }
+
+    /**
+     * Here is the key method to apply the animation
+     */
+    private void setAnimation(View viewToAnimate, int position) {
+        // If the bound view wasn't previously displayed on screen, it's animated
+        if (position > lastPosition)
+        {
+            Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_down);
+            viewToAnimate.startAnimation(animation);
+            lastPosition = position;
+        }
+    }
+
+    public void clearAnimation(View mRootLayout)
+    {
+        mRootLayout.clearAnimation();
     }
 
     public View.OnClickListener getRowOptionListenerClick(final int positionRow, final Chat userModel) {

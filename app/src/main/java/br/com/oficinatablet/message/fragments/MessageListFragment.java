@@ -93,6 +93,7 @@ public class MessageListFragment extends Fragment {
 
     public void loadAdapterByChatKey(String chatKey) {
         this.chatMessageAdapter = this.getFirebaseMessageAdapter(chatKey);
+        this.chatMessageAdapter.registerAdapterDataObserver(getFirebaseAdapterObserver());
 
         chatMessageRecyclerView.setAdapter(this.chatMessageAdapter);
     }
@@ -133,6 +134,22 @@ public class MessageListFragment extends Fragment {
                 }
 
                 return friendMessage ? R.layout.layout_message_left_row : R.layout.layout_message_right_row;
+            }
+        };
+    }
+
+    private RecyclerView.AdapterDataObserver getFirebaseAdapterObserver() {
+        return new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                int messageCount = chatMessageAdapter.getItemCount();
+                int lastVisiblePosition = chatMessageLayoutManager.findLastCompletelyVisibleItemPosition();
+                // If the recycler view is initially being loaded or the user is at the bottom of the list, scroll
+                // to the bottom of the list to show the newly added message.
+                if (lastVisiblePosition == -1 || (positionStart >= (messageCount - 1) && lastVisiblePosition == (positionStart - 1))) {
+                    chatMessageRecyclerView.scrollToPosition(positionStart);
+                }
             }
         };
     }
